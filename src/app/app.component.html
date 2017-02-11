@@ -1,0 +1,9 @@
+<div>
+  <span *ngIf="authenticated">
+    <app-docker-ui></app-docker-ui>
+  </span>
+
+  <span *ngIf="!authenticated">
+      <app-login (logged) = "onLoggedEvent($event)"></app-login>
+  </span>
+</div>

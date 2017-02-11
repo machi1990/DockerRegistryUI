@@ -1,0 +1,24 @@
+<form (ngSubmit)="onSubmit()" #contactForm="ngForm">
+  <div class="form-group">
+    <label for="name">Username</label>
+    <input type="text" class="form-control" required
+    [(ngModel)]="credential.name"
+    name="name"  #username="ngModel" >
+    <div [hidden]="username.valid" class="alert alert-danger">
+      Username is required.
+    </div>
+    <label for="password">Password</label>
+    <input type="password" class="form-control" required
+    [(ngModel)]="credential.password"
+    name="password"  #password="ngModel" >
+    <div [hidden]="password.valid" class="alert alert-danger">
+      Password is required.
+    </div>
+  </div>
+
+  <div [hidden]="valid" class="alert alert-danger">
+    Username or password is not valid.
+  </div>
+  <br>
+  <button type="submit" class="btn btn-default" [disabled]="!contactForm.form.valid">Login</button>
+</form>

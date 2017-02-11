@@ -1,0 +1,60 @@
+<h4 *ngIf="!loading" class="alert-danger centered"><strong>Note:</strong> Before attempting to delete an image or one of its tag, make sure you have all the rights. The action is irreversible</h4>
+<div class="panel-group search-results" id="accordion" *ngIf="!loading" infinite-scroll
+[infiniteScrollDistance]="2"
+[infiniteScrollUpDistance]="1.5"
+[infiniteScrollThrottle]="10"
+(scrolled)="onScrollDown()"
+(scrolledUp)="onScrollUp()">
+<div class="panel panel-default" *ngFor="let image of images; let i=index; trackBy: trackByFn">
+  <div class="panel-heading">
+    <h4 class="panel-title">
+      <a data-toggle="collapse" data-parent="#accordion" href="#{{i}}">{{image | uppercase}}</a>
+      <a class="pull-right" style="color:#22b8eb" (click)="delete(image)"><i class="fa fa-trash"></i></a>
+    </h4>
+  </div>
+  <div [id]="i" class="panel-collapse collapse" [ngClass]="{'in': is1st(i)}">
+    <div class="panel-body">
+      <table>
+        <caption style="text-align: center;"> Tags of {{image | uppercase}}</caption>
+        <tr>
+          <th>Name</th>
+          <th>Author</th>
+          <th> Created on </th>
+          <th> OS </th>
+          <th> Docker Version </th>
+          <th>Environment Variables</th>
+          <th>Exposed ports</th>
+          <th> Labels </th>
+          <th>&nbsp;</th>
+        </tr>
+        <tr *ngFor="let tag of manifestsOfImage(image); trackBy: trackByFn">
+          <td>{{tag['tag']}}</td>
+          <td>{{author(tag['infos']['author'])}}</td>
+          <th>{{createdOn(tag['infos']['created'])}} </th>
+          <th>{{tag['infos']['os']}} </th>
+          <th>{{tag['infos']['docker_version']}} </th>
+          <td>
+            <ul *ngIf="tag['infos']['container_config'] && tag['infos']['container_config']['Env']">
+                <li *ngFor="let env of normalize(tag['infos']['container_config']['Env']); trackBy: trackByFn">{{env}}</li>
+            </ul>
+            <span *ngIf="!tag['infos']['container_config'] || !tag['infos']['container_config']['Env']">-</span>
+          </td>
+          <td>
+            <ul *ngIf="tag['infos']['container_config'] && tag['infos']['container_config']['ExposedPorts']">
+              <li *ngFor="let port of ports(tag['infos']['container_config']['ExposedPorts']); trackBy: trackByFn">{{port}}</li>
+            </ul>
+            <span *ngIf="!tag['infos']['container_config'] || !tag['infos']['container_config']['ExposedPorts']">-</span>
+          </td>
+          <td>
+            <ul *ngIf="tag['infos']['container_config'] && tag['infos']['container_config']['Labels']">
+              <li *ngFor="let label of normalize(tag['infos']['container_config']['Labels']); trackBy: trackByFn">{{label}}</li>
+            </ul>
+            <span *ngIf="!tag['infos']['container_config'] || !tag['infos']['container_config']['Labels']">-</span>
+          </td>
+          <td><a class="pull-right" style="color:#22b8eb" (click)="deleteTag(image,tag['tag'])"><i class="fa fa-trash"></i></a></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+</div>

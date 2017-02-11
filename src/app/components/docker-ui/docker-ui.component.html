@@ -1,0 +1,5 @@
+<div class="container">
+  <h1>DOCKER REGISTRY v2</h1>
+  <app-registry-content [loading]="loading" [manifests] = "manifests" [images]="images" (candelete)="delete($event)"></app-registry-content>
+  <app-loader [loading]="loading"></app-loader>
+</div>
