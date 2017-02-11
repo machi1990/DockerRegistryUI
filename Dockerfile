@@ -5,6 +5,7 @@ MAINTAINER manyanda.chitimbo@safety-line.fr
 ENV REGISTRY_ADDRESS http://178.170.71.124:2250/
 
 COPY dist /root/dist
+COPY package-docker.json /root/package.json
 COPY index.js /root/index.js
 COPY entrypoint.sh /root/entrypoint.sh
 

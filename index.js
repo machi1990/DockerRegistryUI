@@ -17,7 +17,7 @@ app.set('port',8080);
 */
 const options = { changeOrigin: true },
     proxy = httpProxy.createProxyServer(options),
-    registryAddress = argv.address || 'http://178.170.71.124:2250/';
+    registryAddress = argv.address || 'http://localhost:5000/';
 
 app.all('/v2/*', function (req, res, next) {
     proxy.web(req, res, {target: registryAddress }, function(error) {
