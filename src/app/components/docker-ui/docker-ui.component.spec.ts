@@ -5,7 +5,7 @@ import { DockerUIComponent } from './docker-ui.component';
 
 describe('Component: DockerUI', () => {
   it('should create an instance', () => {
-    let component = new DockerUIComponent();
+    let component = new DockerUIComponent(null);
     expect(component).toBeTruthy();
   });
 });

@@ -1,10 +1,10 @@
-import { DockerRegistryUiPage } from './app.po';
+import { Ui2Page } from './app.po';
 
-describe('docker-registry-ui App', function() {
-  let page: DockerRegistryUiPage;
+describe('ui2 App', () => {
+  let page: Ui2Page;
 
   beforeEach(() => {
-    page = new DockerRegistryUiPage();
+    page = new Ui2Page();
   });
 
   it('should display message saying app works', () => {

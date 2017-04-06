@@ -1,6 +1,6 @@
 import { browser, element, by } from 'protractor';
 
-export class DockerRegistryUiPage {
+export class Ui2Page {
   navigateTo() {
     return browser.get('/');
   }
