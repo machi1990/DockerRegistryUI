@@ -1,7 +1,7 @@
 # DockerRegistryUi
 
 
-This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.17.
+This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0.
 
 ## Development server
 Provide your registry's address by modifying the scripts parts of the package.json file. Run `yarn run serve` to launch a dev server. Navigate to `http://localhost:8080/`. The app will not automatically reload if you change any of the source files. To see your modifications you'll have to run `ng build -dev` and refresh your browser afterwards.

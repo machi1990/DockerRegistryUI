@@ -1,6 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
-import {Manifest} from '../../interfaces/manifest';
+import { Manifest } from '../../interfaces/manifest';
 
 @Component({
   selector: 'app-registry-content',
@@ -11,56 +11,56 @@ export class RegistryContentComponent implements OnInit {
 
   @Input() private loading: boolean;
   @Input() private images: Array<string>;
-  @Input() private manifests:Object;
+  @Input() private manifests: Object;
 
-  @Output() private candelete:EventEmitter<Object>;
+  @Output() private candelete: EventEmitter<Object>;
 
   public constructor() {
     this.init();
   }
 
-  public ngOnInit():void {
+  public ngOnInit(): void {
 
   }
 
-  private init():void {
+  private init(): void {
     this.loading = true;
     this.images = [];
     this.manifests = {};
     this.candelete = new EventEmitter<Object>();
   }
 
-  private onScrollDown ():void {
+  private onScrollDown (): void {
   }
 
-  private onScrollUp ():void {
+  private onScrollUp (): void {
   }
 
-  private is1st(index:number): boolean {
-    return index == 0;
+  private is1st(index: number): boolean {
+    return index === 0;
   }
 
-  private delete(imageName:string):void {
-    const manifests:Array<Manifest> = this.manifests[imageName];
-    manifests.forEach((manifest:Manifest) => {
-      this.deleteTag(imageName,manifest.tag);
-    })
+  private delete(imageName: string): void {
+    const manifests: Array<Manifest> = this.manifests[imageName];
+    manifests.forEach((manifest: Manifest) => {
+      this.deleteTag(imageName, manifest.tag);
+    });
   }
 
-  private deleteTag(imageName:string,tag:string) {
+  private deleteTag(imageName: string, tag: string) {
     this.candelete.emit({
       name: imageName,
       tag: tag
     });
   }
 
-  private manifestsOfImage(image:string): Array<Manifest> {
-    const manifests:Array<Manifest> = this.manifests[image] || [];
+  private manifestsOfImage(image: string): Array<Manifest> {
+    const manifests: Array<Manifest> = this.manifests[image] || [];
     return manifests;
   }
 
-  private createdOn(dateString:string): string {
-    const date:Date = new Date(dateString);
+  private createdOn(dateString: string): string {
+    const date: Date = new Date(dateString);
     return date.toLocaleDateString();
   }
 
@@ -72,18 +72,18 @@ export class RegistryContentComponent implements OnInit {
     return author;
   }
 
-  private ports(portsObject:Object): Array<string> {
+  private ports(portsObject: Object): Array<string> {
     const keys: Array<string> = Object.keys((portsObject));
     return keys;
   }
 
-  private normalize(args:any): Array<string> {
+  private normalize(args: any): Array<string> {
     if (!args) {
       return [];
     }
 
     if (this.isObject(args)) {
-      let newargs: Array<string> = [];
+      const newargs: Array<string> = [];
       for (let i in args) {
           newargs.push(i + '=' + args[i]);
       }
@@ -93,7 +93,7 @@ export class RegistryContentComponent implements OnInit {
     return args;
   }
 
-  private isObject(obj:any):boolean {
+  private isObject(obj: any): boolean {
     if (obj === null) {
       return false;
     }

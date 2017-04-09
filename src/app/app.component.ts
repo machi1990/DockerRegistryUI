@@ -12,7 +12,7 @@ export class AppComponent {
 
   }
 
-  public onLoggedEvent(event:boolean): void {
+  public onLoggedEvent(event: boolean): void {
     this.authenticated = event;
   }
 }

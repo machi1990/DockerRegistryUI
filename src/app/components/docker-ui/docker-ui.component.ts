@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {DockerAPIService} from '../../services/docker-api.service';
+import { DockerAPIService } from '../../services/docker-api.service';
 
-import {Manifest} from '../../interfaces/manifest';
+import { Manifest } from '../../interfaces/manifest';
 
 @Component({
   selector: 'app-docker-ui',
@@ -10,27 +10,27 @@ import {Manifest} from '../../interfaces/manifest';
 })
 export class DockerUIComponent implements OnInit {
 
-  private images:Array<string>;
-  private loading:boolean;
+  private images: Array<string>;
+  private loading: boolean;
   private manifests: Object;
 
-  public constructor(private service:DockerAPIService) {
+  public constructor(private service: DockerAPIService) {
 
   }
 
-  public ngOnInit():void {
+  public ngOnInit(): void {
       this.init();
   }
 
-  private init():void {
+  private init(): void {
     this.images = [];
     this.loading = true;
     this.manifests = {};
 
-    this.service.catalog().subscribe((images:Array<string>) => {
+    this.service.catalog().subscribe((images: Array<string>) => {
         this.images = images;
         this.loading = false;
-        this.images.forEach((image:string) => {
+        this.images.forEach((image: string) => {
             this.tag(image);
         });
     }, (error:Error) => {
@@ -39,27 +39,27 @@ export class DockerUIComponent implements OnInit {
     });
   }
 
-  private tag(image:string):void {
+  private tag(image: string): void {
     this.manifests[image] = [];
-    this.service.tags(image).subscribe((tags:Array<string>) => {
+    this.service.tags(image).subscribe((tags: Array<string>) => {
         if (!tags) {
             return;
         }
 
-        tags.forEach((tag:string) => {
-            this.service.manifests(image,tag).subscribe((manifest:Manifest) => {
+        tags.forEach((tag: string) => {
+            this.service.manifests(image,tag).subscribe((manifest: Manifest) => {
                 this.manifests[image].push(manifest);
-            }, (error:Error) => {
+            }, (error: Error) => {
                 console.error(error);
             });
         });
-    }, (error:Error) => {
+    }, (error: Error) => {
         this.manifests[image] = [];
-    })
+    });
   }
 
-  private delete(ref:Object): void {
-    this.service.digest(ref['name'],ref['tag']).subscribe((res:Object) => {
+  private delete(ref: Object): void {
+    this.service.digest(ref['name'], ref['tag']).subscribe((res: Object) => {
         const digest = res['digest'];
         /*
         const layers = res['data']['layers'] || [];
@@ -75,12 +75,12 @@ export class DockerUIComponent implements OnInit {
           );
         }); */
 
-      this.service.delete(ref['name'],digest).subscribe((rez:Object) => {
+      this.service.delete(ref['name'],digest).subscribe((rez: Object) => {
           console.log(rez);
-      }, (err:Error) => {
+      }, (err: Error) => {
         console.error(err);
-      })
-    }, (error:Error) => {
+      });
+    }, (error: Error) => {
         console.error(error);
     });
   }

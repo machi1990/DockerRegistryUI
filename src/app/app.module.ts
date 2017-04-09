@@ -4,7 +4,7 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 
-import {DockerUIModule} from './modules/docker-ui/docker-ui.module';
+import { DockerUIModule } from './modules/docker-ui/docker-ui.module';
 
 @NgModule({
   declarations: [
@@ -16,6 +16,8 @@ import {DockerUIModule} from './modules/docker-ui/docker-ui.module';
     DockerUIModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [
+    AppComponent
+    ]
 })
 export class AppModule { }
