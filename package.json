@@ -9,7 +9,18 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "serve": "node index.js --address=http://localhost:5000/"
+    "serve": "node index.js --address=http://localhost:5000/",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "prettier --parser typescript --single-quote --trailing-comma none --use-tabs false --write",
+      "git add"
+    ],
+    "*.css": [
+      "prettier --parser postcss --use-tabs false --write",
+      "git add"
+    ]
   },
   "private": true,
   "dependencies": {
@@ -43,6 +54,7 @@
     "codelyzer": "~2.0.0",
     "express": "^4.14.1",
     "http-proxy": "^1.16.2",
+    "husky": "^0.13.4",
     "jasmine-core": "~2.5.2",
     "jasmine-spec-reporter": "~3.2.0",
     "karma": "~1.4.1",
@@ -51,7 +63,9 @@
     "karma-coverage-istanbul-reporter": "^0.2.0",
     "karma-jasmine": "~1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
+    "lint-staged": "^4.0.0",
     "minimist": "^1.2.0",
+    "prettier": "^1.4.4",
     "protractor": "~5.1.0",
     "ts-node": "~2.0.0",
     "tslint": "~4.5.0",

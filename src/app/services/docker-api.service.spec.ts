@@ -10,7 +10,10 @@ describe('Service: DockerAPI', () => {
     });
   });
 
-  it('should ...', inject([DockerAPIService], (service: DockerAPIService) => {
-    expect(service).toBeTruthy();
-  }));
+  it(
+    'should ...',
+    inject([DockerAPIService], (service: DockerAPIService) => {
+      expect(service).toBeTruthy();
+    })
+  );
 });

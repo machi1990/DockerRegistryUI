@@ -8,7 +8,6 @@ import { Manifest } from '../../interfaces/manifest';
   styleUrls: ['./registry-content.component.css']
 })
 export class RegistryContentComponent implements OnInit {
-
   @Input() private loading: boolean;
   @Input() private images: Array<string>;
   @Input() private manifests: Object;
@@ -19,9 +18,7 @@ export class RegistryContentComponent implements OnInit {
     this.init();
   }
 
-  public ngOnInit(): void {
-
-  }
+  public ngOnInit(): void {}
 
   private init(): void {
     this.loading = true;
@@ -30,11 +27,9 @@ export class RegistryContentComponent implements OnInit {
     this.candelete = new EventEmitter<Object>();
   }
 
-  private onScrollDown (): void {
-  }
+  private onScrollDown(): void {}
 
-  private onScrollUp (): void {
-  }
+  private onScrollUp(): void {}
 
   private is1st(index: number): boolean {
     return index === 0;
@@ -73,7 +68,7 @@ export class RegistryContentComponent implements OnInit {
   }
 
   private ports(portsObject: Object): Array<string> {
-    const keys: Array<string> = Object.keys((portsObject));
+    const keys: Array<string> = Object.keys(portsObject);
     return keys;
   }
 
@@ -85,7 +80,7 @@ export class RegistryContentComponent implements OnInit {
     if (this.isObject(args)) {
       const newargs: Array<string> = [];
       for (let i in args) {
-          newargs.push(i + '=' + args[i]);
+        newargs.push(i + '=' + args[i]);
       }
       return newargs;
     }
@@ -98,6 +93,6 @@ export class RegistryContentComponent implements OnInit {
       return false;
     }
 
-    return (typeof obj === 'object') && !Array.isArray(obj);
+    return typeof obj === 'object' && !Array.isArray(obj);
   }
 }

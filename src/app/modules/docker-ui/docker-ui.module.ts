@@ -13,24 +13,14 @@ import { LoginComponent } from '../../components/login/login.component';
 import { DockerAPIService } from '../../services/docker-api.service';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    HttpModule,
-    FormsModule,
-    InfiniteScrollModule
-  ],
+  imports: [CommonModule, HttpModule, FormsModule, InfiniteScrollModule],
   declarations: [
     DockerUIComponent,
     LoginComponent,
     LoaderComponent,
     RegistryContentComponent
   ],
-  exports: [
-    DockerUIComponent,
-    LoginComponent
-  ],
-  providers: [
-    DockerAPIService
-    ]
+  exports: [DockerUIComponent, LoginComponent],
+  providers: [DockerAPIService]
 })
-export class DockerUIModule { }
+export class DockerUIModule {}

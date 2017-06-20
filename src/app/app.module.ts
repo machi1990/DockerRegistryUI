@@ -7,17 +7,9 @@ import { AppComponent } from './app.component';
 import { DockerUIModule } from './modules/docker-ui/docker-ui.module';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    HttpModule,
-    DockerUIModule
-  ],
+  declarations: [AppComponent],
+  imports: [BrowserModule, HttpModule, DockerUIModule],
   providers: [],
-  bootstrap: [
-    AppComponent
-    ]
+  bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

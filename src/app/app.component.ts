@@ -8,9 +8,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
   private authenticated: boolean = true; // false if login needed
 
-  public constructor () {
-
-  }
+  public constructor() {}
 
   public onLoggedEvent(event: boolean): void {
     this.authenticated = event;

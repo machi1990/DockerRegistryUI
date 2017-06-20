@@ -8,9 +8,7 @@ import { Credential } from '../../interfaces/credential';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  providers: [
-      DockerAPIService
-    ]
+  providers: [DockerAPIService]
 })
 export class LoginComponent implements OnInit {
   @Output() private logged: EventEmitter<boolean>;
@@ -18,21 +16,24 @@ export class LoginComponent implements OnInit {
   private valid: boolean;
 
   public constructor(private service: DockerAPIService) {
-      this.logged = new EventEmitter<boolean>();
-      this.credential = {username: '', password: ''};
-      this.valid = true;
+    this.logged = new EventEmitter<boolean>();
+    this.credential = { username: '', password: '' };
+    this.valid = true;
   }
 
   public ngOnInit(): void {
-      this.onSubmit();
+    this.onSubmit();
   }
 
   private onSubmit(): void {
-    this.service.authenticate(this.credential).subscribe((data: Object) => {
+    this.service.authenticate(this.credential).subscribe(
+      (data: Object) => {
         this.logged.emit(true);
-    }, (error: Error) => {
+      },
+      (error: Error) => {
         this.valid = false;
         this.logged.emit(false);
-    });
+      }
+    );
   }
 }
