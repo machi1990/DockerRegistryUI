@@ -34,13 +34,10 @@ Before running the tests make sure you are serving the app via `ng serve`.
 To get more help on the `angular-cli` use `ng --help` or go check out the [Angular-CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
 
-
-
 ## TODO
-i) Pagination
-ii) Image or tag searching
-iii) Directly linking up with the registry
-iv) Code review
+* Pagination
+* Image or tag searching
+* Code review
 
 ## Contacts
 Manyanda Chitimbo <manyanda.chitimbo@gmail.com>
