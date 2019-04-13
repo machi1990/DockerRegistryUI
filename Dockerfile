@@ -1,6 +1,6 @@
 FROM ubuntu:16.04
 
-MAINTAINER manyanda.chitimbo@safety-line.fr
+MAINTAINER manyanda.chitimbo@gmail.com
 
 ENV REGISTRY_ADDRESS http://178.170.71.124:2250/
 
